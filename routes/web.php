@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//     if (date("h") < "20") {
+//     return '<html><body><h1></h1><p>こんにちは</p></body></html>';
+//   }else{
+//     return '<html><body><h1></h1><p>こんばんは</p></body></html>';
+//  }
+return view('welcome');
 });
 
 Route::group(['prefix' => 'admin'], function(){
