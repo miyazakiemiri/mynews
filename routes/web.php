@@ -20,12 +20,23 @@ Route::get('/', function () {
 return view('welcome');
 });
 
-Route::group(['prefix' => 'admin'], function(){
-    Route::get('news/create','Admin\NewsController@add')->middleware('auth');
-    Route::get('profile/create','Admin\ProfileController@add')->middleware('auth');
-    Route::get('profile/edit','Admin\ProfileController@edit')->middleware('auth');
+Route::group(['prefix' => 'admin' , 'middleware' => 'auth'], function(){
+    Route::get('news/create','Admin\NewsController@add');
+    Route::post('news/create','Admin\NewsController@create');//追記
+    Route::get('profile/create','Admin\ProfileController@add');
+    Route::post('profile/create','Admin\profileController@create');//追記
+    Route::get('profile/edit','Admin\ProfileController@edit');
+    Route::post('profile/edit','Admin\profileController@update');//追記　profileController.phpと記入の順番は連動するべきなのか
 });
-    
+
+//　↑にまとめる事ができた！
+// Route::group(['prefix' => 'admin'], function(){
+//     Route::get('profile/create','Admin\ProfileController@add')->middleware('auth');
+//     Route::get('profile/edit','Admin\ProfileController@edit')->middleware('auth');
+// });
+
+// なぜ勝手についかされているのか疑問
+//答え：$ php artisan make:authを実行したから
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
