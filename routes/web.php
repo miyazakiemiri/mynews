@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'], function(){
     Route::get('profile/create','Admin\ProfileController@add');
     Route::post('profile/create','Admin\ProfileController@create');//追記
     Route::get('profile/edit','Admin\ProfileController@edit');
-    Route::post('profile/edit','Admin\ProfileController@update');//追記　profileController.phpと記入の順番は連動するべきなのか
+    Route::post('profile/edit','Admin\ProfileController@update');//追記
 });
 
 //　↑にまとめる事ができた！
