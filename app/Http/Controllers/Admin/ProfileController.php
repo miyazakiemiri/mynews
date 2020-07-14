@@ -50,7 +50,7 @@ class ProfileController extends Controller
         // Validationをかける
         $this->validate($request, Profile::$rules);
         // Profiles Modelからデータを取得する
-        $profile = Profiles::find($request->id);
+        $profile = Profile::find($request->id);
         // 送信されてきたフォームデータを格納する
         $profile_form = $request->all();
         unset($profile_form['_token']);
@@ -58,6 +58,6 @@ class ProfileController extends Controller
         // 該当するデータを上書きして保存する
         $profile->fill($profile_form)->save();
         
-        return redirect('admin/profile/edit');
+        return redirect()->back();
     }
 }
